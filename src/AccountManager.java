@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public interface AccountManager {
 
     FailedLoginCounter failedLoginCounter = new FailedLoginCounter();
-    FileService fileService = new FileService();
+    FileService fileService = FileService.getInstance();
 
     static void register(Account account) throws IOException, AccountAlreadyExistsException {
         String email = account.getEmail();
@@ -26,11 +26,12 @@ public interface AccountManager {
         String allInformation = fileService.allInformationFinder(email);
         if (allInformation != null) {
             if (!allInformation.isEmpty() &
-                    allInformation.contains("," + password)) {
+                    allInformation.contains("," + password) ) {
 
                 if (allInformation.contains("false")) {
 
                     String guess = ",";
+                    String[] parts = allInformation.split(guess);
                     ArrayList<Integer> indexes = new ArrayList<>();
                     int index = allInformation.indexOf(guess);
                     while (index >= 0) {

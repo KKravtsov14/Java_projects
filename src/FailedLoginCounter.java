@@ -17,7 +17,11 @@ public class FailedLoginCounter {
 
 
     public boolean updater(String email){
-        if (loginAttempts.get(email) <= 3) {
+        if (!loginAttempts.containsKey(email)){
+            loginAttempts.put(email, 0);
+            return true;
+        }
+        if (loginAttempts.get(email) <= 2) {
             loginAttempts.put(email, loginAttempts.get(email) + 1);
             return true;
         }

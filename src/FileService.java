@@ -11,7 +11,7 @@ public class FileService {
         return instance;
     }
 
-    FileService() {}
+    private FileService(){}
 
     public boolean finder(String findVariable) throws IOException {
 
@@ -81,20 +81,18 @@ public class FileService {
     }
 
     public void newDataWriter() throws IOException {
-        File newData = new File("D:\\IdeaProjects\\AdminAkk\\src\\NewData.csv");
+        try (FileWriter fileOut = new FileWriter(new File("D:\\IdeaProjects\\AdminAkk\\src\\DataBase.csv"), true)) {
+            File newData = new File("D:\\IdeaProjects\\AdminAkk\\src\\NewData.csv");
 
-        FileWriter fileOut = new FileWriter(new File("D:\\IdeaProjects\\AdminAkk\\src\\DataBase.csv"), true);
+            FileReader fileIn = new FileReader(newData);
+            BufferedReader reader = new BufferedReader(fileIn);
+            String textLine;
 
-        FileReader fileIn = new FileReader(newData);
-        BufferedReader reader = new BufferedReader(fileIn);
-        String textLine;
+            while ((textLine = reader.readLine()) != null) {
+                fileOut.write(textLine + "\n");
 
-
-        while ((textLine = reader.readLine()) != null){
-            fileOut.write(textLine+ "\n");
-
+            }
         }
-        fileOut.close();
     }
 
     public String allInformationFinder(String findVariable) throws IOException {

@@ -4,7 +4,7 @@ public class MainAdminAkk {
 
     public static void main(String[] args) throws IOException, AccountBlockedException, WrongCredentialsException, AccountAlreadyExistsException {
 
-        FileAccountManager.newAccount("K", "14", "mkil.ru", "k");
+//        FileAccountManager.newAccount("K", "14", "mkil.ru", "k");
         try
         {
             FileAccountManager.loginer("mkil.ru", "p");
@@ -19,7 +19,7 @@ public class MainAdminAkk {
                 System.out.println(e2.getMessage());
                 try
                 {
-                    FileAccountManager.loginer("mkil.ru", "p");
+                    FileAccountManager.loginer("mlil.ru", "p");
                 }
                 catch (IOException | WrongCredentialsException | AccountBlockedException e3){
                     System.out.println(e3.getMessage());
